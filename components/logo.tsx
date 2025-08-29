@@ -1,29 +1,33 @@
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { Anchor } from "lucide-react"; // Example icon
 
-interface iAppProps {
-  width?: number;
-  height?: number;
+interface LogoProps {
+  size?: "sm" | "md" | "lg";
   href?: string;
 }
 
-export function Logo({ height = 100, width = 50, href = "/" }: iAppProps) {
+const sizeMap = {
+  sm: { icon: "h-5 w-5", text: "text-base" },
+  md: { icon: "h-7 w-7", text: "text-xl" },
+  lg: { icon: "h-9 w-9", text: "text-2xl" },
+};
+
+export function Logo({ size = "md", href = "/" }: LogoProps) {
+  const { icon, text } = sizeMap[size];
+
   return (
-    <>
-      <Link
-        href={href}
-        aria-label="home"
-        className="flex items-center space-x-2"
-      >
-        <Image
-          src={"/upc.png"}
-          alt="Logo image"
-          width={width}
-          height={height}
-          className="object-cover"
-        />
-      </Link>
-    </>
+    <Link
+      href={href}
+      aria-label="home"
+      className="flex items-center gap-2 font-bold text-primary hover:opacity-90 transition"
+    >
+      {/* Brand Icon */}
+      <Anchor className={`${icon} text-primary`} />
+
+      {/* Brand Name */}
+      <span className={`${text} tracking-tight`}>
+        Anchorpoint <span className="text-muted-foreground">Partners</span>
+      </span>
+    </Link>
   );
 }

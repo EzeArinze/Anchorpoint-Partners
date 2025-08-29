@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-import { HeroHeader } from "./_components/header";
 import FooterSection from "./_components/footer";
+import { HeroHeader } from "./_components/header";
 
 export const metadata: Metadata = {
-  title: "Universal prime capital",
+  title: "Anchorpoint Partners",
   description: "Invest in real-estate, crypto, crude-oil, gold, ruby's. e.t.c",
 };
 
@@ -17,9 +17,7 @@ export default function RootLayout({
     <div
     // className={` `}
     >
-      <header>
-        <HeroHeader />
-      </header>
+      <HeroHeader />
       {children}
       <footer className="border-b bg-white pt-20 dark:bg-transparent">
         <FooterSection />

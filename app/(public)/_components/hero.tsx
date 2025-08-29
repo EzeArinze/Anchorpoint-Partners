@@ -1,79 +1,55 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import ImageSlider from "./slider";
-
-export function Hero() {
+export const AppComponent = () => {
   return (
-    <div className="relative pt-20 sm:pt-28 md:pt-36 lg:pt-44 mt-4">
-      {/* background */}
-      <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]" />
+    <div className="relative w-full aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9] rounded-2xl bg-white/5 p-6">
+      {/* Header */}
+      <div className="flex items-center gap-2 text-orange-400 mb-4">
+        <svg
+          className="size-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+        >
+          <g fill="none">
+            <path
+              fill="#ff6723"
+              d="M26 19.34c0 6.1-5.05 11.005-11.15 10.641c-6.269-.374-10.56-6.403-9.752-12.705c.489-3.833 2.286-7.12 4.242-9.67c.34-.445.689 3.136 1.038 2.742c.35-.405 3.594-6.019 4.722-7.991a.694.694 0 0 1 1.028-.213C18.394 3.854 26 10.277 26 19.34"
+            />
+            <path
+              fill="#ffb02e"
+              d="M23 21.851c0 4.042-3.519 7.291-7.799 7.144c-4.62-.156-7.788-4.384-7.11-8.739C9.07 14.012 15.48 10 15.48 10S23 14.707 23 21.851"
+            />
+          </g>
+        </svg>
+        <div className="text-base font-medium">Portfolio Growth</div>
+      </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-          {/* Top Badge Link */}
-          <div className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit flex-wrap items-center gap-3 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-            <span className="text-foreground text-xs sm:text-sm">
-              Welcome to universal prime capital
-            </span>
-            <span className="dark:border-background hidden sm:block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
-            <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
-              <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                <span className="flex size-6">
-                  <ArrowRight className="m-auto size-3" />
-                </span>
-                <span className="flex size-6">
-                  <ArrowRight className="m-auto size-3" />
-                </span>
-              </div>
-            </div>
+      {/* Subtext */}
+      <p className="text-sm text-foreground border-b border-white/10 pb-3">
+        This year, your investments are outperforming last year’s average
+        returns.
+      </p>
+
+      {/* Stats */}
+      <div className="mt-4 space-y-3">
+        <div>
+          <span className="text-2xl font-semibold text-foreground">12.4%</span>
+          <span className="text-xs text-muted-foreground ml-1">
+            Avg. Return
+          </span>
+          <div className="mt-1 h-6 w-full rounded bg-gradient-to-r from-emerald-400 to-indigo-600 px-2 text-xs text-white flex items-center">
+            2024
           </div>
+        </div>
 
-          {/* Title + Subtitle */}
-          <h1 className="mt-6 sm:mt-8 text-balance text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-semibold leading-tight">
-            A Diverse-Asset Investment Manager
-          </h1>
-          <p className="mx-auto mt-6 sm:mt-8 max-w-xl sm:max-w-2xl text-balance text-base sm:text-lg text-muted-foreground">
-            Universal Prime Capital Trading is an institutional investment firm
-            applying professional trading, venture investing, credit
-            underwriting, and portfolio management to digital and traditional
-            assets.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <div className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5 w-full sm:w-auto">
-              <Button
-                asChild
-                size="lg"
-                className="w-full sm:w-auto rounded-xl px-5 text-base bg-teal-700 dark:text-white"
-              >
-                <Link href="/dashboard">
-                  <span className="text-nowrap">Get Started</span>
-                </Link>
-              </Button>
-            </div>
-            <Button
-              asChild
-              size="lg"
-              variant="ghost"
-              className="w-full sm:w-auto h-10.5 rounded-xl px-5"
-            >
-              <Link href="/sign-in">
-                <span className="text-nowrap">Create Account</span>
-              </Link>
-            </Button>
+        <div>
+          <span className="text-2xl font-semibold text-foreground">7.8%</span>
+          <span className="text-xs text-muted-foreground ml-1">
+            Avg. Return
+          </span>
+          <div className="mt-1 h-6 w-2/3 rounded bg-white/20 px-2 text-xs flex items-center">
+            2023
           </div>
         </div>
       </div>
-
-      {/* App Screenshot / Slider */}
-      <div className="mt-12 sm:mt-16 md:mt-20">
-        <ImageSlider />
-      </div>
     </div>
   );
-}
+};

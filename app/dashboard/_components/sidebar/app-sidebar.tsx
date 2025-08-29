@@ -77,7 +77,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="mb-3">
-              <Logo href="/dashboard" height={50} width={130} />
+              <Logo href="/dashboard" />
             </div>
           </SidebarMenuItem>
         </SidebarMenu>

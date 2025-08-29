@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 // import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Universal prime capital | Sign-in",
-  description: "Sign-in page for Universal prime capital",
+  title: "Anchorpoint Partners | Sign-in",
+  description: "Sign-in page for Anchorpoint Partners",
 };
 
 export default function AuthLayout({ children }: { children: ReactNode }) {

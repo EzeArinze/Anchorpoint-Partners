@@ -6,7 +6,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ReactQueryProvider from "@/lib/providers/react-query";
 
 export const metadata: Metadata = {
-  title: "Universal prime capital",
+  title: "Anchorpoint Partners",
   description: "Invest in real-estate, crypto, crude-oil, gold, ruby's. e.t.c",
 };
 

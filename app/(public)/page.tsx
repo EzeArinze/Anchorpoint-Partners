@@ -1,23 +1,21 @@
-import HeroSection from "./_components/hero-section";
-import TeamSection from "./_components/our-team";
 import StatsSection from "./_components/stats";
 import WallOfLoveSection from "./_components/testimonials";
-import WhyInvest from "./_components/why-invest";
-import { InvestmentProducts } from "./_components/investment-products";
-import { Insight } from "./_components/insight";
-import { InvestmentPlans } from "./_components/investment-plan";
+import { CompanyOffers } from "./_components/why-invest";
+import HeroSection from "./_components/hero-section";
+import { InvestmentPackages } from "./_components/investment-products";
+import { InvestmentPackagesPlans } from "./_components/investment-plan";
+import { CallToAction } from "./_components/call-to-action";
 
 export default function PublicRoute() {
   return (
     <>
       <HeroSection />
-      <WhyInvest />
+      <CompanyOffers />
       <StatsSection />
-      <InvestmentProducts />
+      <InvestmentPackages />
       <WallOfLoveSection />
-      <InvestmentPlans />
-      <TeamSection />
-      <Insight />
+      <InvestmentPackagesPlans />
+      <CallToAction />
     </>
   );
 }

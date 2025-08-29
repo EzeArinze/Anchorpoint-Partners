@@ -48,7 +48,7 @@ export default function FooterSection() {
     <div className="mx-auto max-w-5xl px-6">
       <div className="flex  justify-between gap-12 ">
         <div className="">
-          <Logo height={50} width={100} />
+          <Logo size="sm" />
         </div>
 
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:col-span-3">
@@ -75,7 +75,7 @@ export default function FooterSection() {
         </span>
         <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
           <Link
-            href="https://t.me/universalprimecapital"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X/Twitter"
@@ -85,7 +85,7 @@ export default function FooterSection() {
           </Link>
 
           <Link
-            href="https://www.linkedin.com/company/universalprimecapital"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X/Twitter"
@@ -95,7 +95,7 @@ export default function FooterSection() {
           </Link>
 
           <Link
-            href="https://www.facebook.com/people/Universal-Prime-Capital-UPC/61563976222899/"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
@@ -116,7 +116,7 @@ export default function FooterSection() {
           </Link>
 
           <Link
-            href="https://www.instagram.com/universal_prime_capital/"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"

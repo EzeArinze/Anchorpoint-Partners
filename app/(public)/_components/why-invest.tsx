@@ -1,120 +1,107 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  Banknote,
-  BookCheck,
-  MessageCircleMoreIcon,
-  ShieldCheck,
-} from "lucide-react";
-import { ReactNode } from "react";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+import { PieChart, Shield, Users, TrendingUp } from "lucide-react";
 
-export default function WhyInvest() {
+export function CompanyOffers() {
+  const offers = [
+    {
+      icon: PieChart,
+      title: "Portfolio Management",
+      description:
+        "Professionally managed diversified portfolios tailored to your risk tolerance and investment goals.",
+      features: [
+        "Automated rebalancing",
+        "Tax-loss harvesting",
+        "Low-cost ETFs",
+      ],
+    },
+    {
+      icon: Shield,
+      title: "Wealth Protection",
+      description:
+        "Comprehensive strategies to protect and preserve your wealth across market cycles.",
+      features: ["Risk assessment", "Insurance planning", "Estate planning"],
+    },
+    {
+      icon: Users,
+      title: "Financial Advisory",
+      description:
+        "One-on-one guidance from certified financial planners to optimize your financial strategy.",
+      features: ["Personal consultation", "Goal planning", "24/7 support"],
+    },
+    {
+      icon: TrendingUp,
+      title: "Growth Strategies",
+      description:
+        "Advanced investment strategies designed to maximize long-term growth potential.",
+      features: [
+        "Alternative investments",
+        "Growth-focused funds",
+        "Market analysis",
+      ],
+    },
+  ];
+
   return (
-    <section className="bg-zinc-50 py-16 md:py-28 dark:bg-transparent">
-      <div className="mx-auto max-w-5xl px-6">
-        {/* Heading */}
-        <div className="text-center">
-          <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
-            Why Invest With Us
-          </h2>
+    <section className="relative py-24 bg-gradient-to-br from-background via-muted/20 to-accent/10">
+      {/* subtle grid background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30 dark:opacity-10" />
 
-          <h3 className="mt-2 text-2xl md:text-3xl font-semibold leading-snug text-teal-700">
-            We stand as a prominent platform for diverse investments
-          </h3>
-          <p className="mt-4 text-muted-foreground">
-            As a leading investment platform, we operate with a profound sense
-            of responsibility towards our investors, clients, society, and the
-            environment. Our commitment extends to developing best practices and
-            industry standards across various investment sectors, including real
-            estate, gold, crude oil, digital assets, and more. At Universal
-            Prime Capital, we are proud to be an equal opportunity employer and
-            a sustainability-focused community. Our operations adhere to the
-            responsibilities outlined in our policies, reflecting our dedication
-            to excellence in every facet of our diversified investment portfolio
+      <div className="relative max-w-5xl mx-auto px-6">
+        {/* Section heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Offer</h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Comprehensive investment solutions designed to help you build,
+            protect, and grow your wealth.
           </p>
         </div>
 
-        {/* Responsive Grid */}
-        <div className="mx-auto mt-8 grid max-w-lg gap-6 text-center md:mt-16 md:max-w-3xl md:grid-cols-2 lg:max-w-full lg:grid-cols-3">
-          <Card className="group shadow-zinc-950/5">
-            <CardHeader className="pb-3">
-              <CardDecorator>
-                <ShieldCheck className="size-6 text-teal-700/60" aria-hidden />
-              </CardDecorator>
-              <h3 className="mt-6 font-medium">Secure first</h3>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">
-                For Security, we use the latest technology for your convenience
-                transacting.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group shadow-zinc-950/5">
-            <CardHeader className="pb-3">
-              <CardDecorator>
-                <MessageCircleMoreIcon
-                  className="size-6 text-teal-700/60"
-                  aria-hidden
-                />
-              </CardDecorator>
-              <h3 className="mt-6 font-medium">24hr Support</h3>
-            </CardHeader>
-            <CardContent>
-              <p className="mt-3 text-sm">
-                You can always reach out to us when ever you want to, We are
-                always here to help.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group shadow-zinc-950/5">
-            <CardHeader className="pb-3">
-              <CardDecorator>
-                <Banknote className="size-6 text-teal-700/60" aria-hidden />
-              </CardDecorator>
-              <h3 className="mt-6 font-medium">Quick Withdrawal</h3>
-            </CardHeader>
-            <CardContent>
-              <p className="mt-3 text-sm">
-                Our all retreats are treated spontaneously once requested, they
-                are high maximum limits. are higher
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group shadow-zinc-950/5">
-            <CardHeader className="pb-3">
-              <CardDecorator>
-                <BookCheck className="size-6 text-teal-700/60" aria-hidden />
-              </CardDecorator>
-              <h3 className="mt-6 font-medium">Legal Company</h3>
-            </CardHeader>
-            <CardContent>
-              <p className="mt-3 text-sm">
-                We are certified to operate investment business, we are legal
-                and safe.
-              </p>
-            </CardContent>
-          </Card>
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+          {offers.map((offer, index) => (
+            <Card
+              key={index}
+              className="group relative rounded-2xl border bg-background/60 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-accent/40"
+            >
+              <CardHeader>
+                <div className="mx-auto w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                  <offer.icon className="h-7 w-7 text-accent" />
+                </div>
+                <CardTitle className="text-lg font-semibold mb-2">
+                  {offer.title}
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  {offer.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  {offer.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                {/* <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full bg-transparent group-hover:border-accent group-hover:text-accent transition-colors"
+                >
+                  Learn More
+                </Button> */}
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
-export const CardDecorator = ({ children }: { children: ReactNode }) => (
-  <div className="relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
-    <div
-      aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]"
-    />
-    <div
-      aria-hidden
-      className="bg-radial to-background absolute inset-0 from-transparent to-75%"
-    />
-    <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">
-      {children}
-    </div>
-  </div>
-);

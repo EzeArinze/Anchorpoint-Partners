@@ -8,7 +8,6 @@ import {
   IconCashBanknoteEdit,
   IconList,
   IconMoneybag,
-  IconLoader,
 } from "@tabler/icons-react";
 
 import { NavMain } from "@/app/dashboard/_components/sidebar/nav-main";
@@ -53,11 +52,6 @@ const data = {
       url: "/admin/users",
       icon: IconUser,
     },
-    {
-      title: "Load account",
-      url: "/admin/load-account",
-      icon: IconLoader,
-    },
   ],
   // navSecondary: [
   //   {
@@ -77,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="mb-3">
-              <Logo href="/admin" height={50} width={130} />
+              <Logo href="/admin" />
             </div>
           </SidebarMenuItem>
         </SidebarMenu>

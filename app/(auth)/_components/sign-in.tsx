@@ -84,7 +84,7 @@ export default function SignInPage() {
           >
             <div className="p-8 pb-6">
               <div>
-                <Logo height={50} width={150} />
+                <Logo size="md" />
 
                 <h1 className="mb-1 mt-4 text-xl font-semibold">
                   Sign In to universal prime capital
@@ -166,7 +166,7 @@ export default function SignInPage() {
 
                 <p className="text-red-400 font-semibold text-sm">{error}</p>
                 <Button
-                  className="w-full bg-teal-600 text-white hover:bg-teal-700"
+                  className="w-full bg-primary text-muted"
                   onClick={handleMagicLink}
                   disabled={pending || magicPending}
                 >
@@ -177,7 +177,7 @@ export default function SignInPage() {
 
             <div className="bg-muted rounded-(--radius) border p-3">
               <p className="text-accent-foreground text-center text-sm">
-                All right reserved by universal prime capital
+                All right reserved by Anchorpoint partners
               </p>
             </div>
           </form>

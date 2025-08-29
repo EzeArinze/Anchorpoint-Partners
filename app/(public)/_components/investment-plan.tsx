@@ -1,100 +1,86 @@
-import { CheckCircle2 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { plans } from "@/constants/constant";
-import React from "react";
+import Link from "next/link";
 
-export function InvestmentPlans() {
+export function InvestmentPackagesPlans() {
   return (
-    <section className="py-16 md:py-24 dark:bg-primary/5 bg-gray-50">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl ">
-            Investment Plans
-          </h2>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">
-            Choose the plan that fits your financial goals.
-          </p>
-        </div>
+    <section className="relative py-24 bg-gradient-to-b from-background via-background/90 to-background">
+      <div className="max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-4xl font-bold sm:text-5xl mb-4">
+          Investment Plans
+        </h2>
+        <p className="text-muted-foreground mb-14 max-w-2xl mx-auto">
+          Choose a plan that suits your goals. Transparent, reliable, and built
+          for growth.
+        </p>
 
-        {/* Plan cards */}
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {plans.map((plan) => (
-            <Card
+            <div
               key={plan.name}
-              className="flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-zinc-800 shadow-md"
+              className={`relative flex flex-col items-center justify-between rounded-2xl border p-6 aspect-[4/5] 
+                bg-background/70 backdrop-blur-sm shadow-soft transition-transform duration-300 hover:scale-105 hover:shadow-strong
+                ${
+                  plan.name === "Gold"
+                    ? "border-yellow-500/50 shadow-lg shadow-yellow-500/20"
+                    : ""
+                }`}
             >
-              <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl ">{plan.name}</CardTitle>
-                <p className="mt-1 text-sm text-teal-700">{plan.tagline}</p>
-              </CardHeader>
+              {/* Badge for featured plan */}
+              {plan.name === "Gold" && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
+                  Popular
+                </span>
+              )}
 
-              <CardContent className="flex flex-col flex-1 justify-between">
-                <div>
-                  {/* Rate */}
-                  <p className="text-5xl font-extrabold text-teal-700 dark:text-teal-600 text-center">
+              <div className="w-full">
+                <h3 className="text-2xl font-semibold mb-1">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  {plan.tagline}
+                </p>
+
+                <div className="mb-8">
+                  <span className="text-5xl font-bold text-primary">
                     {plan.rate}%
-                    <span className="ml-2 text-lg font-medium text-gray-500 dark:text-gray-400">
-                      {plan.period}
-                    </span>
-                  </p>
-
-                  {/* Includes */}
-                  <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-left">
-                    {plan.includes} Includes:
-                  </p>
-
-                  {/* Features */}
-                  <ul className="mt-6 space-y-3">
-                    {plan.features.map((feature, i) => (
-                      <React.Fragment key={i}>
-                        <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                          <CheckCircle2 className="h-5 w-5 text-teal-700 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">
-                            Minimum: {feature.minimum}
-                          </span>
-                        </li>
-
-                        <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                          <CheckCircle2 className="h-5 w-5 text-teal-700 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">
-                            Maximum: {feature.maximum}
-                          </span>
-                        </li>
-
-                        <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                          <CheckCircle2 className="h-5 w-5 text-teal-700 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">
-                            Referral Bonus: {feature.ReferralBonus}
-                          </span>
-                        </li>
-
-                        <li className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                          <CheckCircle2 className="h-5 w-5 text-teal-700 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">
-                            Support: {feature.Support}
-                          </span>
-                        </li>
-                      </React.Fragment>
-                    ))}
-                  </ul>
+                  </span>
+                  <span className="text-muted-foreground ml-2 text-lg">
+                    / {plan.period}
+                  </span>
                 </div>
 
-                {/* Button - always aligned bottom */}
+                {plan.features.map((f, i) => (
+                  <ul key={i} className="space-y-2 text-sm text-left">
+                    <li>
+                      <span className="font-medium">Min:</span> ${f.minimum}
+                    </li>
+                    <li>
+                      <span className="font-medium">Max:</span> ${f.maximum}
+                    </li>
+                    <li>
+                      <span className="font-medium">Referral Bonus:</span>{" "}
+                      {f.ReferralBonus}
+                    </li>
+                    <li>
+                      <span className="font-medium">Support:</span> {f.Support}
+                    </li>
+                  </ul>
+                ))}
+              </div>
 
-                <Link
-                  href={"/dashboard"}
-                  className={buttonVariants({
-                    className:
-                      "mt-8 w-full bg-teal-700 hover:bg-teal-700 text-white rounded-lg",
-                  })}
+              <div className="mt-8 w-full">
+                <Button
+                  asChild
+                  className={`w-full rounded-xl py-3 sm:py-3 text-base sm:text-md font-medium transition 
+    ${
+      plan.name === "Gold"
+        ? "bg-yellow-500 hover:bg-yellow-600 text-black"
+        : "hover:bg-primary/90"
+    }`}
                 >
-                  Get Started
-                </Link>
-              </CardContent>
-            </Card>
+                  <Link href="/sign-in">Start Investing</Link>
+                </Button>
+              </div>
+            </div>
           ))}
         </div>
       </div>

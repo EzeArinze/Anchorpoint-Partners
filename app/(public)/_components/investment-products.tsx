@@ -1,67 +1,62 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import { Products } from "@/constants/constant";
 
-export function InvestmentProducts() {
+export function InvestmentPackages() {
   return (
-    <section
-      className="bg-zinc-50 py-16 md:py-32 dark:bg-transparent"
-      id="products"
-    >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="text-center">
-          <h2 className="text-balance text-3xl font-semibold sm:text-4xl lg:text-5xl">
-            Investment Products
+    <section className="py-24 bg-background/5">
+      <div className="max-w-6xl mx-auto px-6 text-center space-y-12">
+        {/* Section Heading */}
+        <div className="space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Explore Our Investment Packages
           </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+            Diversified investment options tailored to your financial goals.
+            Choose the package that suits you best and start growing your wealth
+            today.
+          </p>
         </div>
 
-        {/* Cards */}
-        <div className="mx-auto mt-10 grid gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
-          {Products.map((product) => (
-            <Card
-              key={product.id}
-              className="group shadow-zinc-950/5 hover:shadow-lg transition-shadow"
+        {/* Packages Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Products.map((pkg) => (
+            <div
+              key={pkg.id}
+              className="flex flex-col rounded-2xl border bg-background/60 backdrop-blur-sm shadow-sm hover:shadow-xl overflow-hidden"
             >
-              <CardHeader className="pb-3">
-                {product.image && (
-                  <div className="relative w-full h-40 rounded-lg overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <h3 className="mt-4 font-semibold text-lg underline">
-                  {product.title}
-                </h3>
-              </CardHeader>
+              {/* Image */}
+              <Image
+                src={pkg.image}
+                alt={pkg.title}
+                width={600}
+                height={200}
+                className="w-full h-44 object-cover"
+              />
 
-              <CardContent>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  {product.small_description}
-                </p>
-              </CardContent>
+              {/* Content */}
+              <div className="flex flex-col flex-1 justify-between p-6 text-center">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold">{pkg.title}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {pkg.small_description}
+                  </p>
+                </div>
 
-              <CardFooter>
-                <Link href={`/product/${product.slug}`}>
-                  <Button variant="ghost" className="text-teal-700">
-                    Learn More
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+                <div className="mt-6">
+                  <Link href={`/product/${pkg.slug}`}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full bg-transparent"
+                    >
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
