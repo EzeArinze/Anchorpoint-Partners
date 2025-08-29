@@ -3,7 +3,7 @@ import { Facebook, Instagram, Linkedin, Send } from "lucide-react";
 export const Products: iAppProps[] = [
   {
     id: 1,
-    image: "/images/gemstone.webp",
+    image: "/images/real-estate.jpg",
     title: "Real Estate",
     slug: "real-estate",
     link: "/product/real-estate",
@@ -14,7 +14,7 @@ export const Products: iAppProps[] = [
   },
   {
     id: 2,
-    image: "/images/gold.webp",
+    image: "/images/retirement.jpg",
     title: "Retirement Plans",
     slug: "retirement-plans",
     link: "/investments/retirement-plans",
@@ -25,7 +25,7 @@ export const Products: iAppProps[] = [
   },
   {
     id: 3,
-    image: "/images/digital-asset.webp",
+    image: "/images/cannabis.jpg",
     title: "Cannabis",
     slug: "cannabis",
     link: "/investments/cannabis",
@@ -36,7 +36,7 @@ export const Products: iAppProps[] = [
   },
   {
     id: 4,
-    image: "/images/nft.webp",
+    image: "/images/digital-asset.jpg",
     title: "Crypto",
     slug: "crypto",
     link: "/investments/crypto",
@@ -47,7 +47,7 @@ export const Products: iAppProps[] = [
   },
   {
     id: 5,
-    image: "/images/nft.webp",
+    image: "/images/oil.jpg",
     title: "Oil & Gas",
     slug: "oil-gas",
     link: "/investments/oil-gas",
@@ -58,7 +58,7 @@ export const Products: iAppProps[] = [
   },
   {
     id: 6,
-    image: "/images/nft.webp",
+    image: "/images/financial-planning.jpg",
     title: "Financial Planning",
     slug: "financial-planning",
     link: "/investments/financial-planning",

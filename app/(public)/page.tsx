@@ -5,6 +5,9 @@ import HeroSection from "./_components/hero-section";
 import { InvestmentPackages } from "./_components/investment-products";
 import { InvestmentPackagesPlans } from "./_components/investment-plan";
 import { CallToAction } from "./_components/call-to-action";
+import MarketInsightsSection from "./_components/market-insight";
+import HowItWorks from "./_components/how-it-works";
+import { VisionMissionSection } from "./_components/vision-mission-section";
 
 export default function PublicRoute() {
   return (
@@ -15,6 +18,9 @@ export default function PublicRoute() {
       <InvestmentPackages />
       <WallOfLoveSection />
       <InvestmentPackagesPlans />
+      <HowItWorks />
+      <VisionMissionSection />
+      <MarketInsightsSection />
       <CallToAction />
     </>
   );

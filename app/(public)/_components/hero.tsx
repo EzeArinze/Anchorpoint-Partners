@@ -19,7 +19,7 @@ export const AppComponent = () => {
             />
           </g>
         </svg>
-        <div className="text-base font-medium">Portfolio Growth</div>
+        <div className="text-base font-medium">Wealth Growth</div>
       </div>
 
       {/* Subtext */}

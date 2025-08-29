@@ -7,20 +7,16 @@ const links = [
     group: "Product",
     items: [
       {
-        title: "Features",
-        href: "#",
+        title: "Our mision",
+        href: "/#our-mision",
       },
       {
-        title: "Solution",
-        href: "#",
+        title: "plans",
+        href: "/#plans",
       },
       {
-        title: "Customers",
-        href: "#",
-      },
-      {
-        title: "Pricing",
-        href: "#",
+        title: "Insight",
+        href: "/#insight",
       },
     ],
   },

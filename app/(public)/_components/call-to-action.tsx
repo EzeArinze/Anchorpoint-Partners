@@ -1,6 +1,5 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export function CallToAction() {
   return (
@@ -19,13 +18,16 @@ export function CallToAction() {
         </p>
 
         {/* Button */}
-        <Button
-          size="lg"
-          className="px-8 py-6 text-lg font-semibold rounded-2xl shadow-lg"
-          variant={"link"}
+        <Link
+          href={"/dashboard"}
+          className={buttonVariants({
+            variant: "link",
+            size: "lg",
+            className: "px-8 py-6 text-lg font-semibold rounded-2xl shadow-lg",
+          })}
         >
           Get Started Today
-        </Button>
+        </Link>
       </div>
     </section>
   );

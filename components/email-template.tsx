@@ -22,54 +22,62 @@ const EmailConfirmation = ({ email, url }: iAppProps) => {
     <Html lang="en" dir="ltr">
       <Tailwind>
         <Head />
-        <Preview>
-          Confirm your email address to complete your registration
-        </Preview>
-        <Body className="bg-gray-100 font-sans py-[40px]">
-          <Container className="bg-white rounded-[8px] p-[32px] max-w-[600px] mx-auto">
+        <Preview>Confirm your Anchor Point Partners account</Preview>
+        <Body className="bg-snow font-sans py-[40px]">
+          <Container className="bg-white rounded-[10px] shadow-lg p-[32px] max-w-[600px] mx-auto border border-gray-200">
             <Section>
-              <Text className="text-[24px] font-bold text-gray-900 mb-[24px]">
-                Confirm Your Email Address
+              {/* Header */}
+              <Text className="text-[26px] font-extrabold text-primary mb-[24px]">
+                Welcome to Anchor Point Partners
               </Text>
 
               <Text className="text-[16px] text-gray-700 mb-[16px]">
-                Hi there!
+                Hi there 👋,
               </Text>
 
               <Text className="text-[16px] text-gray-700 mb-[16px]">
-                We received a request to verify your email address:{" "}
-                <strong>{email}</strong>
+                You’re almost set! Please confirm your email address:{" "}
+                <strong className="text-gray-900">{email}</strong>
               </Text>
 
               <Text className="text-[16px] text-gray-700 mb-[32px]">
-                Please click the button below to confirm your email address and
-                complete your registration.
+                Click the button below to verify your email and activate your
+                Anchor Point Partners account.
               </Text>
 
+              {/* CTA Button */}
               <Button
                 href={url}
-                className="bg-teal-600 text-white px-[24px] py-[12px] rounded-[6px] text-[16px] font-medium box-border"
+                className="bg-primary hover:bg-primary/30 transition-colors duration-200 text-white px-[28px] py-[14px] rounded-[6px] text-[16px] font-semibold"
               >
-                Confirm Email Address
+                Confirm Email
               </Button>
 
+              {/* Backup Link */}
               <Text className="text-[14px] text-gray-600 mt-[32px] mb-[16px]">
-                If the button doesn&apos;t work, you can copy and paste this
-                link into your browser:
+                If the button above doesn’t work, copy and paste this link into
+                your browser:
               </Text>
 
-              <Text className="text-[14px] text-teal-600 break-all mb-[32px]">
+              <Text className="text-[14px] text-ring underline break-all mb-[32px]">
                 {url}
               </Text>
 
+              {/* Security Notice */}
               <Text className="text-[14px] text-gray-600">
-                If you didn&apos;t request this email, you can safely ignore it.
+                If you didn’t sign up for Anchor Point Partners, you can safely
+                ignore this email.
               </Text>
             </Section>
 
-            <Section className="mt-[38px] pt-[16px] border-t border-gray-200">
+            {/* Footer */}
+            <Section className="mt-[40px] pt-[16px] border-t border-gray-200">
               <Text className="text-[12px] text-gray-500 m-0 mb-[8px]">
-                © 2025 Universal Prime Capital. All rights reserved.
+                © {new Date().getFullYear()} Anchor Point Partners. All rights
+                reserved.
+              </Text>
+              <Text className="text-[12px] text-gray-400 italic">
+                Guiding your investments with trust and expertise.
               </Text>
             </Section>
           </Container>
@@ -80,7 +88,7 @@ const EmailConfirmation = ({ email, url }: iAppProps) => {
 };
 
 EmailConfirmation.PreviewProps = {
-  url: "https://example.com/confirm-email?token=abc123",
+  url: "https://anchorpointpartners.com/confirm-email?token=abc123",
   email: "nuelrinz@gmail.com",
 };
 

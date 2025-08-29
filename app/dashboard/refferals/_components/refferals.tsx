@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 export function Referral() {
   const [copied, setCopied] = useState(false);
-  const referralLink = "https://upc.com/register?ref=USER123"; // Replace USER123 dynamically from auth
+  const referralLink = `https://${process.env.BETTER_AUTH_URL}/register?ref=USER123`; // Replace USER123 dynamically from auth
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(referralLink);

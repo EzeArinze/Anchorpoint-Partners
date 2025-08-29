@@ -36,7 +36,7 @@ export const HeroHeader = () => {
       <nav
         data-state={menuState && "active"}
         className={cn(
-          "fixed z-20 w-full border-b transition-colors duration-150",
+          "fixed z-20 w-full border-b-2 transition-colors duration-150",
           scrolled && "bg-background/50 backdrop-blur-3xl"
         )}
       >

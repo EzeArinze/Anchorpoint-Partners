@@ -166,7 +166,7 @@ export default function SignInPage() {
 
                 <p className="text-red-400 font-semibold text-sm">{error}</p>
                 <Button
-                  className="w-full bg-primary text-muted"
+                  className="w-full bg-primary"
                   onClick={handleMagicLink}
                   disabled={pending || magicPending}
                 >

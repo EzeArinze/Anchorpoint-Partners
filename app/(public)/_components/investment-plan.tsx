@@ -73,12 +73,11 @@ export function InvestmentPackagesPlans() {
               <div className="mt-8 w-full">
                 <Button
                   asChild
-                  className={`w-full rounded-xl py-3 sm:py-3 text-base sm:text-md font-medium transition 
-    ${
-      plan.name === "Diamond"
-        ? "bg-yellow-500 hover:bg-yellow-600 text-black"
-        : "hover:bg-primary/90"
-    }`}
+                  className={`w-full rounded-xl py-3 sm:py-3 text-base sm:text-md font-medium transition ${
+                    plan.name === "Diamond"
+                      ? "bg-yellow-500 hover:bg-yellow-600 text-black"
+                      : "hover:bg-primary/90"
+                  }`}
                 >
                   <Link href="/sign-in">Start Investing</Link>
                 </Button>

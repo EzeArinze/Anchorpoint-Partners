@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5">
       {/* Background overlay image */}
-      <div className="absolute inset-0 bg-[url('/modern-financial-cityscape-with-skyscrapers.png')] bg-cover bg-center opacity-10" />
+      <div className="absolute inset-0 bg-[url('/images/investment.jpg')] bg-cover bg-center opacity-10" />
 
       <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-28 lg:pt-40 text-center">
         <div className="relative z-10 mx-auto max-w-3xl">
