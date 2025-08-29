@@ -5,7 +5,7 @@ import { Products } from "@/constants/constant";
 
 export function InvestmentPackages() {
   return (
-    <section className="py-24 bg-background/5">
+    <section className="py-24 bg-background/5" id="products">
       <div className="max-w-6xl mx-auto px-6 text-center space-y-12">
         {/* Section Heading */}
         <div className="space-y-4">

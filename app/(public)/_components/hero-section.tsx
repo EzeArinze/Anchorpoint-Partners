@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
 import { AppComponent } from "./hero";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -26,17 +27,28 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button size="lg" className="px-6 py-3">
+            <Link
+              className={buttonVariants({
+                size: "lg",
+                className: "`px-6 py-3`",
+              })}
+              href={"/dashboard"}
+            >
               Start Investing
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="px-6 py-3 bg-transparent"
+            </Link>
+
+            <Link
+              className={buttonVariants({
+                variant: "outline",
+                size: "lg",
+                className: "px-6 py-3 bg-transparent",
+              })}
+              href={"/sign-in"}
             >
-              View Our Services
-            </Button>
+              Create Account
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
 

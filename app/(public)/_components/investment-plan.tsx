@@ -4,7 +4,10 @@ import Link from "next/link";
 
 export function InvestmentPackagesPlans() {
   return (
-    <section className="relative py-24 bg-gradient-to-b from-background via-background/90 to-background">
+    <section
+      className="relative py-24 bg-gradient-to-b from-background via-background/90 to-background"
+      id="plans"
+    >
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold sm:text-5xl mb-4">
           Investment Plans
@@ -21,13 +24,13 @@ export function InvestmentPackagesPlans() {
               className={`relative flex flex-col items-center justify-between rounded-2xl border p-6 aspect-[4/5] 
                 bg-background/70 backdrop-blur-sm shadow-soft transition-transform duration-300 hover:scale-105 hover:shadow-strong
                 ${
-                  plan.name === "Gold"
+                  plan.name === "Diamond"
                     ? "border-yellow-500/50 shadow-lg shadow-yellow-500/20"
                     : ""
                 }`}
             >
               {/* Badge for featured plan */}
-              {plan.name === "Gold" && (
+              {plan.name === "Diamond" && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
                   Popular
                 </span>
@@ -72,7 +75,7 @@ export function InvestmentPackagesPlans() {
                   asChild
                   className={`w-full rounded-xl py-3 sm:py-3 text-base sm:text-md font-medium transition 
     ${
-      plan.name === "Gold"
+      plan.name === "Diamond"
         ? "bg-yellow-500 hover:bg-yellow-600 text-black"
         : "hover:bg-primary/90"
     }`}

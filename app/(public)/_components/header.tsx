@@ -6,12 +6,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/theme-toggle";
+import { clientSession } from "@/hooks/client-session";
+import UserDropdown from "@/components/user-dropdown";
 
 const menuItems = [
-  { name: "Features", href: "#link" },
-  { name: "Solution", href: "#link" },
-  { name: "Pricing", href: "#link" },
-  { name: "About", href: "#link" },
+  { name: "Plans", href: "/#plans" },
+  { name: "Contact", href: "/contact" },
+  { name: "Help", href: "/help" },
+  { name: "About", href: "/about" },
 ];
 
 export const HeroHeader = () => {
@@ -26,6 +28,8 @@ export const HeroHeader = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const { session, email, name, image, initials, isPending } = clientSession();
 
   return (
     <header>
@@ -83,11 +87,27 @@ export const HeroHeader = () => {
               </div>
               <div className="flex items-center w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <ModeToggle />
-                <Button asChild variant="outline" size="sm">
-                  <Link href="#">
-                    <span>Login</span>
-                  </Link>
-                </Button>
+                {isPending ? (
+                  <div className="flex items-center gap-2 animate-pulse">
+                    <div className="h-8 w-8 rounded-full bg-muted" />
+                    <div className="h-4 w-20 rounded bg-muted" />
+                  </div>
+                ) : session ? (
+                  <UserDropdown
+                    email={email}
+                    name={name}
+                    initials={initials}
+                    image={image}
+                  />
+                ) : (
+                  <>
+                    <Button asChild variant="outline" size="sm">
+                      <Link href="/sign-in">
+                        <span>Login</span>
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
