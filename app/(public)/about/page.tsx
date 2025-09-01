@@ -16,8 +16,8 @@ export default function AboutPage() {
               We are a next-generation investment platform enabling individuals
               to grow their wealth through diversified opportunities in{" "}
               <span className="font-medium text-foreground">
-                Gold, Crude Oil, Medical Cannabis, Ruby, Digital Assets, and
-                NFTs
+                Retirement, Crude Oil, Cannabis, Ruby, Digital Assets, Financial
+                planning
               </span>
               . Our mission is simple — make world-class investment options
               accessible, secure, and transparent.

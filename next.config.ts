@@ -6,21 +6,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ik.imagekit.io",
+        hostname: "1ylyxif5c1.ufs.sh",
         port: "", // optional (empty means any port)
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-        port: "", // optional (empty means any port)
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "archive.org",
-        port: "", // optional (empty means any port)
-        pathname: "/**",
+        pathname: "/f/**",
       },
     ],
   },

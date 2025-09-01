@@ -7,7 +7,7 @@ export function VisionMissionSection() {
         {/* Left Image */}
         <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-lg">
           <Image
-            src="/mision.png" // replace with your image path
+            src="https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxktVG5rAHZX2deOpZozRT4hNgjylwW7FncrB8at"
             alt="Our vision"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

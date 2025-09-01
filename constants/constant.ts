@@ -3,7 +3,8 @@ import { Facebook, Instagram, Linkedin, Send } from "lucide-react";
 export const Products: iAppProps[] = [
   {
     id: 1,
-    image: "/images/real-estate.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxktpWQDPLq1BakmRSMoK6XhVsqvZzfY2Jgyx3cP",
     title: "Real Estate",
     slug: "real-estate",
     link: "/product/real-estate",
@@ -14,7 +15,8 @@ export const Products: iAppProps[] = [
   },
   {
     id: 2,
-    image: "/images/retirement.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxktHHBsv9f7deVtub6q5C3gzyshSEpZILxYA4FX",
     title: "Retirement Plans",
     slug: "retirement-plans",
     link: "/investments/retirement-plans",
@@ -25,7 +27,8 @@ export const Products: iAppProps[] = [
   },
   {
     id: 3,
-    image: "/images/cannabis.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxkt8mxfIjopObG3RHQiVCUeS2BJcWErF8a7vqm9",
     title: "Cannabis",
     slug: "cannabis",
     link: "/investments/cannabis",
@@ -36,7 +39,8 @@ export const Products: iAppProps[] = [
   },
   {
     id: 4,
-    image: "/images/digital-asset.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxktF634ZNVeTd0miKV8tNXR9SkrDs4UlW1v5nw6",
     title: "Crypto",
     slug: "crypto",
     link: "/investments/crypto",
@@ -47,7 +51,8 @@ export const Products: iAppProps[] = [
   },
   {
     id: 5,
-    image: "/images/oil.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxkt8uEHOqopObG3RHQiVCUeS2BJcWErF8a7vqm9",
     title: "Oil & Gas",
     slug: "oil-gas",
     link: "/investments/oil-gas",
@@ -58,7 +63,8 @@ export const Products: iAppProps[] = [
   },
   {
     id: 6,
-    image: "/images/financial-planning.jpg",
+    image:
+      "https://1ylyxif5c1.ufs.sh/f/gdr7UdKsnxktQrQG8uFEbwFYxZSCUoptraXGk7ifzvh1WBAj",
     title: "Financial Planning",
     slug: "financial-planning",
     link: "/investments/financial-planning",
@@ -93,30 +99,6 @@ export const testimonials: Testimonial[] = [
     role: "Oil & Gas Entrepreneur",
     quote:
       "Diversifying into oil and gas investments here has been a game-changer. The professionalism and market expertise are top-notch.",
-  },
-];
-
-export const members = [
-  {
-    name: "Venkatraman Srinivasan",
-    role: "Executive Chairman",
-    avatar: "/srinivasan.png",
-    link: "#",
-    time: "Since - 2008",
-  },
-  {
-    name: "Vijay Kumar",
-    role: "Senior Vice President",
-    avatar: "/kumar.png",
-    link: "#",
-    time: "Since - 2012",
-  },
-  {
-    name: "Stephanie Rogers",
-    role: "Director of Finance",
-    avatar: "/rogers.png",
-    link: "#",
-    time: "Since - 2015",
   },
 ];
 
