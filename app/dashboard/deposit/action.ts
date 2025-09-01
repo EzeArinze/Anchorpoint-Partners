@@ -1,20 +1,24 @@
 "use server";
 
 import { db } from "@/db";
-import { deposit, investment, transaction } from "@/db/schema";
+import { deposit, investment, transaction, referral, user } from "@/db/schema";
 import { requireUser } from "@/data/user/verify-user";
+import { eq } from "drizzle-orm";
 
 type DepositInput = {
   amount: number;
   plan: string;
   roi: string;
   paymentMethod: string;
+  referralCode?: string;
 };
+
+const REFERRAL_PERCENTAGE = 0.1;
 
 export async function createDeposit(
   data: DepositInput
 ): Promise<ActionReturnType> {
-  const user = await requireUser();
+  const currentUser = await requireUser();
 
   try {
     await db.transaction(async (tx) => {
@@ -22,7 +26,7 @@ export async function createDeposit(
       const [depositRecord] = await tx
         .insert(deposit)
         .values({
-          userId: user.id,
+          userId: currentUser.id,
           amount: data.amount,
           plan: data.plan,
           paymentMethod: data.paymentMethod,
@@ -31,16 +35,12 @@ export async function createDeposit(
         .returning();
 
       // 2. Calculate investment details
-      // const expectedReturn = Math.round(
-      //   data.amount * (1 + Number(data.roi) / 100)
-      // );
       const startDate = new Date();
       const endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
       const roi = Number(data.roi) / 100;
 
-      // 3. Insert into investment table
       await tx.insert(investment).values({
-        userId: user.id,
+        userId: currentUser.id,
         depositId: depositRecord.id,
         amount: data.amount,
         plan: data.plan,
@@ -51,23 +51,51 @@ export async function createDeposit(
         endsAt: endDate,
       });
 
-      // 4. Record transaction
+      // 3. Record transaction
       await tx.insert(transaction).values({
-        userId: user.id,
+        userId: currentUser.id,
         type: "deposit",
         amount: data.amount,
         reference: depositRecord.id,
       });
+
+      // 4. Handle referral bonus (only on first deposit with referralCode)
+      if (data.referralCode) {
+        // find referrer
+        const referrer = await tx.query.user.findFirst({
+          where: eq(user.referralCode, data.referralCode),
+        });
+
+        if (referrer && referrer.id !== currentUser.id) {
+          // check if user already referred
+          const existingReferral = await tx.query.referral.findFirst({
+            where: eq(referral.referredId, user.id),
+          });
+
+          if (!existingReferral) {
+            // calculate bonus
+            const bonus = Math.floor(data.amount * REFERRAL_PERCENTAGE);
+
+            // insert referral record
+            await tx.insert(referral).values({
+              referrerId: referrer.id,
+              referredId: currentUser.id,
+              bonus,
+            });
+          }
+        }
+      }
     });
 
     return {
       status: "success",
       message: "Deposit has been made",
     };
-  } catch {
+  } catch (err) {
+    console.error(err);
     return {
       status: "error",
-      message: "Failed to make deposit. Please try again..",
+      message: "Failed to make deposit. Please try again.",
     };
   }
 }

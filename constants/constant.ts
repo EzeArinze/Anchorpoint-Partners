@@ -107,7 +107,7 @@ export const plans: Plan[] = [
     name: "Basic",
     tagline: "Perfect to get started",
     rate: "2",
-    period: "daily",
+    period: "weekly",
     features: [
       {
         minimum: "200",
@@ -122,7 +122,7 @@ export const plans: Plan[] = [
     name: "Edge",
     tagline: "Best for basic investors",
     rate: "2.5",
-    period: "daily",
+    period: "weekly",
     features: [
       {
         minimum: "2,000",
@@ -137,7 +137,7 @@ export const plans: Plan[] = [
     name: "Silver",
     tagline: "Best for mid-range investors",
     rate: "3.5",
-    period: "daily",
+    period: "weekly",
     features: [
       {
         minimum: "5,000",
@@ -152,7 +152,7 @@ export const plans: Plan[] = [
     name: "Diamond",
     tagline: "Best for Professionals",
     rate: "5",
-    period: "daily",
+    period: "weekly",
     features: [
       {
         minimum: "50,000",

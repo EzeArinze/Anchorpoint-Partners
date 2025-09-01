@@ -15,10 +15,12 @@ export function DepositTabs({
   amount,
   paymentMethod,
   selectedPlan,
+  referralCode,
 }: {
   amount: number;
   paymentMethod: "bitcoin" | "ethereum";
   selectedPlan: Plan;
+  referralCode?: string;
 }) {
   const [copied, setCopied] = useState(false);
   const [pending, startTransaction] = useTransition();
@@ -38,6 +40,7 @@ export function DepositTabs({
       plan: selectedPlan.name,
       roi: selectedPlan.rate,
       paymentMethod,
+      referralCode,
     };
 
     startTransaction(async () => {

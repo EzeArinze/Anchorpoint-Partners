@@ -1,56 +1,45 @@
 import { countDistinct, gte, sum } from "drizzle-orm";
 import { db } from "@/db";
-import { investment, user } from "@/db/schema";
+import { investment, referral, user } from "@/db/schema";
 import { requireAdmin } from "./verify-admin";
 
 export type AdminDashboardState = {
   totalCustomers: number;
   totalInvestedCustomers: number;
-  // totalAvailableBalance: number;
   totalInvestedAmount: number;
   totalProfitEarnedbyUsers: number;
 };
 
 export async function getAdminDashboardState(): Promise<AdminDashboardState> {
-  const totalCustomers = await db.$count(user);
+  const [totalCustomers, investmentStats, referralStats] = await Promise.all([
+    db.$count(user),
+    db
+      .select({
+        totalInvestedCustomers: countDistinct(investment.userId),
+        totalInvestedAmount: sum(investment.amount),
+        totalProfit: sum(investment.profit),
+      })
+      .from(investment)
+      .then((res) => res[0]),
+    db
+      .select({ totalReferralBonus: sum(referral.bonus) })
+      .from(referral)
+      .then((res) => res[0]),
+  ]);
 
-  const [row] = await db
-    .select({
-      totalInvestedCustomers: countDistinct(investment.userId),
-      totalInvestedAmount: sum(investment.amount),
-      profitSum: sum(investment.profit),
-    })
-    .from(investment);
+  const totalProfitEarnedbyUsers =
+    Number(investmentStats.totalProfit ?? 0) +
+    Number(referralStats.totalReferralBonus ?? 0);
 
   return {
-    totalCustomers: totalCustomers,
-    totalInvestedCustomers: Number(row.totalInvestedCustomers ?? 0),
-    totalInvestedAmount: Number(row.totalInvestedAmount ?? 0),
-    totalProfitEarnedbyUsers: Number(row.profitSum ?? 0),
+    totalCustomers: Number(totalCustomers ?? 0),
+    totalInvestedCustomers: Number(investmentStats.totalInvestedCustomers ?? 0),
+    totalInvestedAmount: Number(investmentStats.totalInvestedAmount ?? 0),
+    totalProfitEarnedbyUsers,
   };
 }
 
 export type AdminStats = Awaited<ReturnType<typeof getAdminDashboardState>>;
-
-// export async function getAdminDashboardState(): Promise<AdminDashboardState> {
-//   const [row] = await db
-//     .select({
-//       totalCustomers: sql<number>`(select count(*) from ${user})`,
-//       totalInvestedCustomers: countDistinct(investment.userId),
-//       totalInvestedAmount: sum(investment.amount),
-//       amountSum: sum(investment.amount),
-//       profitSum: sum(investment.profit),
-//     })
-//     .from(investment);
-
-//   return {
-//     totalCustomers: Number(row.totalCustomers ?? 0),
-//     totalInvestedCustomers: Number(row.totalInvestedCustomers ?? 0),
-//     totalInvestedAmount: Number(row.totalInvestedAmount ?? 0),
-//     totalAvailableBalance:
-//       Number(row.amountSum ?? 0) + Number(row.profitSum ?? 0),
-//   };
-// }
 
 export async function adminGetmonthlyInvestment() {
   await requireAdmin();

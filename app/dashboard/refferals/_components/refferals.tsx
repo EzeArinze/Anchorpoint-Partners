@@ -1,18 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // shadcn toast
-import { Copy, CheckCircle2, Users, DollarSign, Gift } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Copy, CheckCircle2, DollarSign, Gift, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { generateReferralCode } from "../action";
+import { tryCatch } from "@/utils/try-catch";
 
-export function Referral() {
+export function Referral({
+  referralCode,
+  referalBonus,
+}: {
+  referralCode?: string | null;
+  referalBonus?: number | null;
+}) {
   const [copied, setCopied] = useState(false);
-  const referralLink = `https://${process.env.BETTER_AUTH_URL}/register?ref=USER123`; // Replace USER123 dynamically from auth
+  const [pending, startTransition] = useTransition();
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(referralLink);
+    if (!referralCode) return;
+    await navigator.clipboard.writeText(referralCode);
     setCopied(true);
     toast.success("Referral Link Copied", {
       description: "You can now share your link with friends 🚀",
@@ -20,43 +29,66 @@ export function Referral() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleGenerate = async () => {
+    startTransition(async () => {
+      const { data, error } = await tryCatch(generateReferralCode());
+      if (error) {
+        toast.error("Unexpected error occurred while generating code");
+        return;
+      }
+      if (data.status === "error") {
+        toast.error(data.message);
+        return;
+      }
+      toast.success(data.message);
+    });
+  };
+
   return (
     <>
-      {/* Referral Link */}
       <Card>
         <CardHeader>
-          <CardTitle>Your Referral Link</CardTitle>
+          <CardTitle>Your Referral Code</CardTitle>
         </CardHeader>
         <CardContent className="flex gap-2">
-          <Input value={referralLink} readOnly />
-          <Button variant="outline" onClick={handleCopy}>
-            {copied ? (
-              <CheckCircle2 className="w-4 h-4 text-green-600" />
-            ) : (
-              <Copy className="w-4 h-4" />
-            )}
-          </Button>
+          {referralCode ? (
+            <>
+              <Input value={referralCode} readOnly />
+              <Button variant="outline" onClick={handleCopy}>
+                {copied ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
+              </Button>
+            </>
+          ) : (
+            <Button
+              onClick={handleGenerate}
+              disabled={pending}
+              className="w-full"
+            >
+              {pending ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="size-4 animate-spin" /> Generating...
+                </span>
+              ) : (
+                "Generate Referral Code"
+              )}
+            </Button>
+          )}
         </CardContent>
       </Card>
 
-      {/* Referral Stats */}
-      <div className="grid md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="flex flex-col items-center justify-center py-6">
-            <Users className="w-8 h-8 text-blue-500 mb-2" />
-            <p className="text-2xl font-bold">0</p>
-            <p className="text-sm text-gray-500">Friends Invited</p>
-          </CardContent>
-        </Card>
-
+      {/* Stats */}
+      <div className="grid md:grid-cols-2 gap-4 mt-4">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-6">
             <DollarSign className="w-8 h-8 text-green-500 mb-2" />
-            <p className="text-2xl font-bold">$0</p>
+            <p className="text-2xl font-bold">${referalBonus?.toFixed(2)}</p>
             <p className="text-sm text-gray-500">Total Earned</p>
           </CardContent>
         </Card>
-
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-6">
             <Gift className="w-8 h-8 text-purple-500 mb-2" />

@@ -25,6 +25,7 @@ export function DepositForm({ selectedPlan }: { selectedPlan: Plan }) {
     null
   );
   const [depositMethod, setDepositMethod] = useState<boolean>(false);
+  const [referralCode, setReferralCode] = useState<string>("");
 
   const isReady = selectedPlan && amount && paymentMethod;
   const investmentAmount = Math.round(Number(amount));
@@ -90,12 +91,25 @@ export function DepositForm({ selectedPlan }: { selectedPlan: Plan }) {
           </Select>
         </div>
 
+        {/* Referral Code (optional) */}
+        <div>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Referral Code (optional)
+          </label>
+          <Input
+            type="text"
+            placeholder="Enter referral code"
+            value={referralCode}
+            onChange={(e) => setReferralCode(e.target.value)}
+          />
+        </div>
+
         {/* Proceed Button */}
         <Button
-          className="w-full mt-0.5 text-primary "
+          className="w-full mt-0.5 text-primary"
           disabled={!isReady || investmentAmount < min}
           onClick={handleProceed}
-          variant={"outline"}
+          variant="outline"
         >
           Continue
         </Button>
@@ -106,6 +120,7 @@ export function DepositForm({ selectedPlan }: { selectedPlan: Plan }) {
             amount={investmentAmount}
             paymentMethod={paymentMethod!}
             selectedPlan={selectedPlan}
+            referralCode={referralCode}
           />
         )}
       </CardFooter>

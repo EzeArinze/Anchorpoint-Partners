@@ -7,6 +7,7 @@ import {
   integer,
   pgEnum,
   numeric,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 
@@ -176,19 +177,25 @@ export const transaction = pgTable("transaction", {
   createdAt: timestamp().$defaultFn(() => new Date()),
 });
 
-export const referral = pgTable("referral", {
-  id: text()
-    .$default(() => nanoid())
-    .primaryKey(),
-  referrerId: text()
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-  referredId: text()
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-  bonus: integer().default(0),
-  createdAt: timestamp().$defaultFn(() => new Date()),
-});
+export const referral = pgTable(
+  "referral",
+  {
+    id: text()
+      .$default(() => nanoid())
+      .primaryKey(),
+    referrerId: text()
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    referredId: text()
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    bonus: integer().default(0),
+    createdAt: timestamp().$defaultFn(() => new Date()),
+  },
+  (table) => ({
+    oneReferralPerUser: uniqueIndex("unique_referred").on(table.referredId),
+  })
+);
 
 // ========== RELATIONS ==========
 export const userRelations = relations(user, ({ many }) => ({

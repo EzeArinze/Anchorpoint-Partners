@@ -1,7 +1,11 @@
 import React from "react";
 import { Referral } from "./_components/refferals";
+import { getReferralInfo } from "@/data/user/get-refferals";
+import ReferralShare from "./_components/share-referal-code";
 
-function RefferalsRoute() {
+async function ReferalsRoute() {
+  const { referralCode, totalBonus } = await getReferralInfo();
+
   return (
     <section className="p-6 space-y-6">
       {/* Page Header */}
@@ -11,9 +15,10 @@ function RefferalsRoute() {
           Invite your friends and earn bonus rewards when they join.
         </p>
       </div>
-      <Referral />
+      <Referral referralCode={referralCode} referalBonus={totalBonus} />
+      <ReferralShare referralCode={referralCode} />
     </section>
   );
 }
 
-export default RefferalsRoute;
+export default ReferalsRoute;
