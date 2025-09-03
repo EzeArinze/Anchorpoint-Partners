@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import FooterSection from "./_components/footer";
 import { HeroHeader } from "./_components/header";
+import TawkScript from "@/components/tawk-script";
 
 export const metadata: Metadata = {
   title: "Anchorpoint Partners",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <footer className="border-b bg-white pt-20 dark:bg-transparent">
         <FooterSection />
       </footer>
+      <TawkScript />
     </div>
   );
 }
