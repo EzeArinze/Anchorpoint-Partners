@@ -110,7 +110,7 @@ export const plans: Plan[] = [
     period: "weekly",
     features: [
       {
-        minimum: "200",
+        minimum: "250",
         maximum: "1,999",
         ReferralBonus: "10%",
         Support: "7 Days Contract",
