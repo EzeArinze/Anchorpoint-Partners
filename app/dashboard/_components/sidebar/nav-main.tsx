@@ -8,6 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -22,6 +23,7 @@ export function NavMain({
   }[];
 }) {
   const pathname = usePathname();
+  const { isMobile, setOpenMobile } = useSidebar();
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -35,7 +37,12 @@ export function NavMain({
                 asChild
                 className="hover:bg-accent/20 hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
-                <Link href={item.url}>
+                <Link
+                  href={item.url}
+                  onClick={() => {
+                    if (isMobile) setOpenMobile(false);
+                  }}
+                >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </Link>

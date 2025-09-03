@@ -49,7 +49,12 @@ export function Deposit() {
             </DialogDescription>
           </DialogHeader>
 
-          {selectedPlan && <DepositForm selectedPlan={selectedPlan} />}
+          {selectedPlan && (
+            <DepositForm
+              selectedPlan={selectedPlan}
+              onClose={() => setSelectedPlan(null)}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </div>

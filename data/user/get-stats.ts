@@ -13,7 +13,12 @@ export async function getUserDashboardStats(userId: string) {
           planCount: count(investment.id).as("planCount"),
         })
         .from(investment)
-        .where(eq(investment.userId, userId))
+        .where(
+          and(
+            eq(investment.userId, userId),
+            inArray(investment.status, ["active", "completed"])
+          )
+        )
         .then((res) => res[0]),
 
       // 2. Deposits (only approved)

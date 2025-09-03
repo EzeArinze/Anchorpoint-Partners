@@ -16,11 +16,13 @@ export function DepositTabs({
   paymentMethod,
   selectedPlan,
   referralCode,
+  onClose,
 }: {
   amount: number;
   paymentMethod: "bitcoin" | "ethereum";
   selectedPlan: Plan;
   referralCode?: string;
+  onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
   const [pending, startTransaction] = useTransition();
@@ -55,6 +57,7 @@ export function DepositTabs({
         toast.success("Deposit created successfully!", {
           description: `Your deposit of $${amount} is pending approval.`,
         });
+        onClose?.();
       } else if (depositData.status === "error") {
         toast.error("Deposit creation failed", {
           description: depositData.message,

@@ -19,7 +19,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { DepositTabs } from "./deposit-tabs";
 
-export function DepositForm({ selectedPlan }: { selectedPlan: Plan }) {
+export function DepositForm({
+  selectedPlan,
+  onClose,
+}: {
+  selectedPlan: Plan;
+  onClose: () => void;
+}) {
   const [amount, setAmount] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
@@ -121,6 +127,7 @@ export function DepositForm({ selectedPlan }: { selectedPlan: Plan }) {
             paymentMethod={paymentMethod!}
             selectedPlan={selectedPlan}
             referralCode={referralCode}
+            onClose={onClose}
           />
         )}
       </CardFooter>

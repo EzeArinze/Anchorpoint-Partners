@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,7 +25,7 @@ export function NavSecondary({
   }[];
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const pathname = usePathname();
-
+  const { isMobile, setOpenMobile } = useSidebar();
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
@@ -36,7 +37,12 @@ export function NavSecondary({
                 className="hover:bg-accent/20 hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                 isActive={pathname === item.url}
               >
-                <Link href={item.url}>
+                <Link
+                  href={item.url}
+                  onClick={() => {
+                    if (isMobile) setOpenMobile(false);
+                  }}
+                >
                   <item.icon />
                   <span>{item.title}</span>
                 </Link>
