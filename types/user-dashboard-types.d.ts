@@ -1,1 +1,1 @@
-type PaymentMethod = "bitcoin" | "ethereum";
+type PaymentMethod = "bitcoin" | "ethereum" | "usdt";

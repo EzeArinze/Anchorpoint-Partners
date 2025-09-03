@@ -6,7 +6,7 @@ import QRCode from "react-qr-code";
 type QRWalletProps = {
   address: string;
   amount: number; // optional
-  currency: "bitcoin" | "ethereum";
+  currency: PaymentMethod;
 };
 
 export default function QRWallet({ address, amount, currency }: QRWalletProps) {
@@ -14,14 +14,25 @@ export default function QRWallet({ address, amount, currency }: QRWalletProps) {
 
   const btcPrice = prices?.bitcoin?.usd ?? 0;
   const ethPrice = prices?.ethereum?.usd ?? 0;
+  const usdtPrice = prices?.tether?.usd ?? 0;
 
   const btcAmount = btcPrice ? amount / btcPrice : 0;
   const ethAmount = ethPrice ? amount / ethPrice : 0;
+  const usdtAmount = usdtPrice ? amount / usdtPrice : 0;
   // Build crypto URI
+  // const uri =
+  //   currency === "bitcoin"
+  //     ? `bitcoin:${address}${amount ? `?amount=${btcAmount}` : ""}`
+  //     : `ethereum:${address}${amount ? `?amount=${ethAmount}` : ""}`;
+
   const uri =
     currency === "bitcoin"
       ? `bitcoin:${address}${amount ? `?amount=${btcAmount}` : ""}`
-      : `ethereum:${address}${amount ? `?amount=${ethAmount}` : ""}`;
+      : currency === "ethereum"
+        ? `ethereum:${address}${amount ? `?amount=${ethAmount}` : ""}`
+        : currency === "usdt"
+          ? `ethereum:${address}${amount ? `?amount=${usdtAmount}` : ""}`
+          : "";
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2 rounded-xl border bg-muted">

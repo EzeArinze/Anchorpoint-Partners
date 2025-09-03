@@ -166,8 +166,9 @@ export const plans: Plan[] = [
 ];
 
 export const address: Record<PaymentMethod, string> = {
-  bitcoin: "bc1qnv99m08st4usvzp4t3wncv0l5gkwf",
-  ethereum: "0x443250763303e71cd245ddf",
+  bitcoin: "bc1qslag9xzauheslctj339pjaruazfgrhgpn6e8d6",
+  ethereum: "0xAfE99CE98B41DbBdD0683f5B8a59c39e5bC2E0ED",
+  usdt: "TWEorgRxiHZ8L8GVePa4AFHVd7EP91MU38",
 };
 
 export const socials = [

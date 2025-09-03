@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
@@ -9,17 +8,7 @@ import {
   ChartConfig,
 } from "@/components/ui/chart";
 import { LineChart, Line, CartesianGrid, XAxis } from "recharts";
-
-// ---- Types ----
-interface Coin {
-  id: string;
-  name: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-  sparkline_in_7d?: {
-    price: number[];
-  };
-}
+import { CryptoBy7days } from "@/hooks/use-crypto-by-7days";
 
 interface ChartPoint {
   day: string;
@@ -27,8 +16,14 @@ interface ChartPoint {
 }
 
 export default function MarketInsightsSection() {
-  const [cryptoData, setCryptoData] = useState<Coin[]>([]);
-  const [chartData, setChartData] = useState<ChartPoint[]>([]);
+  const { data: cryptoData, isLoading, error } = CryptoBy7days();
+
+  // Prepare chart data directly from query
+  const chartData: ChartPoint[] =
+    cryptoData?.[0]?.sparkline_in_7d?.price?.map((val, idx) => ({
+      day: `Day ${idx + 1}`,
+      price: val,
+    })) ?? [];
 
   const chartConfig = {
     price: {
@@ -36,34 +31,6 @@ export default function MarketInsightsSection() {
       color: "var(--chart-1)",
     },
   } satisfies ChartConfig;
-
-  // Fetch top coins
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,cardano&order=market_cap_desc&per_page=3&page=1&sparkline=true"
-        );
-        const data: Coin[] = await res.json();
-        setCryptoData(data);
-
-        // Format Bitcoin sparkline for chart
-        if (data[0]?.sparkline_in_7d?.price) {
-          const formatted: ChartPoint[] = data[0].sparkline_in_7d.price.map(
-            (val, idx) => ({
-              day: `Day ${idx + 1}`,
-              price: val,
-            })
-          );
-          setChartData(formatted);
-        }
-      } catch (err) {
-        console.error("Error fetching crypto data:", err);
-      }
-    }
-
-    fetchData();
-  }, []);
 
   return (
     <section className="py-16 bg-muted/40" id="insight">
@@ -83,7 +50,11 @@ export default function MarketInsightsSection() {
               <CardTitle>Bitcoin 7-Day Performance</CardTitle>
             </CardHeader>
             <CardContent>
-              {chartData.length > 0 ? (
+              {isLoading ? (
+                <p className="text-muted-foreground">Loading chart...</p>
+              ) : error ? (
+                <p className="text-red-600">Error loading chart</p>
+              ) : chartData.length > 0 ? (
                 <ChartContainer
                   config={chartConfig}
                   className="h-[260px] md:h-[360px] w-full"
@@ -115,15 +86,19 @@ export default function MarketInsightsSection() {
                   </LineChart>
                 </ChartContainer>
               ) : (
-                <p className="text-muted-foreground">Loading chart...</p>
+                <p className="text-muted-foreground">No chart data</p>
               )}
             </CardContent>
           </Card>
 
           {/* Quick Stats */}
           <div className="space-y-4">
-            {cryptoData.length > 0 ? (
-              cryptoData.map((coin) => (
+            {isLoading ? (
+              <p className="text-muted-foreground">Loading prices...</p>
+            ) : error ? (
+              <p className="text-red-600">Error loading prices</p>
+            ) : (
+              cryptoData?.map((coin) => (
                 <Card key={coin.id}>
                   <CardHeader>
                     <CardTitle>{coin.name}</CardTitle>
@@ -144,8 +119,6 @@ export default function MarketInsightsSection() {
                   </CardContent>
                 </Card>
               ))
-            ) : (
-              <p className="text-muted-foreground">Loading prices...</p>
             )}
           </div>
         </div>

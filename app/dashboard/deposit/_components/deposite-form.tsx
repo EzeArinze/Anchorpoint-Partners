@@ -93,6 +93,7 @@ export function DepositForm({
             <SelectContent>
               <SelectItem value="bitcoin">Bitcoin</SelectItem>
               <SelectItem value="ethereum">Ethereum</SelectItem>
+              <SelectItem value="usdt">Tether</SelectItem>
             </SelectContent>
           </Select>
         </div>

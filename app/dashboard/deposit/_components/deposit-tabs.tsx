@@ -1,6 +1,5 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Copy as IconCopy } from "lucide-react";
@@ -19,7 +18,7 @@ export function DepositTabs({
   onClose,
 }: {
   amount: number;
-  paymentMethod: "bitcoin" | "ethereum";
+  paymentMethod: PaymentMethod;
   selectedPlan: Plan;
   referralCode?: string;
   onClose: () => void;
@@ -66,76 +65,42 @@ export function DepositTabs({
     });
   }
 
-  function handlePayment() {
-    toast.success("Payment feature coming soon!");
-  }
-
   return (
-    <Tabs defaultValue="address" className="w-full">
-      {/* Tab Buttons */}
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="address">Pay with Address</TabsTrigger>
-        <TabsTrigger value="bitpay">Pay with BitPay</TabsTrigger>
-      </TabsList>
+    <div className="w-full p-4 border rounded bg-gray-50 dark:bg-gray-800">
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Please send exactly ${amount} worth of {paymentMethod} to the following
+        address:
+      </p>
 
-      {/* Pay with Address */}
-      <TabsContent value="address">
-        <div className="w-full p-4 border rounded bg-gray-50 dark:bg-gray-800">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Please send exactly ${amount} worth of {paymentMethod} to the
-            following address:
-          </p>
+      <div className="flex items-center gap-2 mt-2">
+        <Input readOnly value={walletAddress} className="font-mono text-sm" />
+        <Button
+          size="icon"
+          onClick={handleCopy}
+          variant={copied ? "secondary" : "default"}
+        >
+          <IconCopy className="size-4" />
+        </Button>
+      </div>
 
-          <div className="flex items-center gap-2 mt-2">
-            <Input
-              readOnly
-              value={walletAddress}
-              className="font-mono text-sm"
-            />
-            <Button
-              size="icon"
-              onClick={handleCopy}
-              variant={copied ? "secondary" : "default"}
-            >
-              <IconCopy className="size-4" />
-            </Button>
-          </div>
-          <p className="text-center">or</p>
-          <QRWallet
-            address={walletAddress}
-            amount={amount}
-            currency={paymentMethod}
-          />
+      <p className="text-center">or</p>
+      <QRWallet
+        address={walletAddress}
+        amount={amount}
+        currency={paymentMethod}
+      />
 
-          <p className="text-xs mt-2 text-gray-500 dark:text-gray-400">
-            Note: It may take up to 30 minutes for the transaction to be
-            confirmed.
-          </p>
+      <p className="text-xs mt-2 text-gray-500 dark:text-gray-400">
+        Note: It may take up to 30 minutes for the transaction to be confirmed.
+      </p>
 
-          <Button
-            className="w-full mt-4"
-            onClick={handlePaymentMade}
-            disabled={pending}
-          >
-            {pending ? "Saving payment" : "I have sent the payment"}
-          </Button>
-        </div>
-      </TabsContent>
-
-      {/* Pay with BitPay */}
-      <TabsContent value="bitpay">
-        <div className="w-full p-4 border rounded bg-gray-50 dark:bg-gray-800">
-          <h3 className="font-semibold mb-2 text-gray-800 dark:text-gray-200">
-            {/* Pay with BitPay */} Coming Soon..
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            You will be redirected to BitPay to complete your payment.
-          </p>
-          <Button className="w-full" disabled onClick={handlePayment}>
-            Continue to BitPay
-          </Button>
-        </div>
-      </TabsContent>
-    </Tabs>
+      <Button
+        className="w-full mt-4"
+        onClick={handlePaymentMade}
+        disabled={pending}
+      >
+        {pending ? "Saving payment" : "I have sent the payment"}
+      </Button>
+    </div>
   );
 }

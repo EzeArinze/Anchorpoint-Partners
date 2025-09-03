@@ -3,13 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 type PriceData = {
   bitcoin?: { usd: number };
   ethereum?: { usd: number };
+  tether?: { usd: number };
 };
 
 async function fetchPrices(): Promise<PriceData> {
   const res = await fetch(
-    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
+    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd"
   );
+
   if (!res.ok) throw new Error("Failed to fetch crypto prices");
+
   return res.json();
 }
 
