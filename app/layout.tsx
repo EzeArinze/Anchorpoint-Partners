@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ReactQueryProvider from "@/lib/providers/react-query";
+import TawkScript from "@/components/tawk-script";
 
 export const metadata: Metadata = {
   title: "Anchorpoint Partners",
@@ -29,6 +30,7 @@ export default function RootLayout({
           </NuqsAdapter>
         </ThemeProvider>
         <Toaster closeButton={true} position="top-center" />
+        <TawkScript />
       </body>
     </html>
   );
