@@ -1,7 +1,7 @@
 import "server-only";
 import { db } from "@/db";
 import { deposit, investment, withdrawal, referral } from "@/db/schema";
-import { and, count, eq, sum } from "drizzle-orm";
+import { and, count, eq, inArray, sum } from "drizzle-orm";
 
 export async function getUserDashboardStats(userId: string) {
   const [investmentStats, deposits, withdrawals, profits, referralBonuses] =

@@ -78,7 +78,7 @@ export const HeroHeader = () => {
                       <Link
                         href={item.href}
                         className="text-muted-foreground hover:text-primary block duration-150"
-                        onClick={() => setMenuState(false)}
+                        onClick={() => setMenuState((prev) => !prev)}
                       >
                         <span>{item.name}</span>
                       </Link>
@@ -103,7 +103,10 @@ export const HeroHeader = () => {
                 ) : (
                   <>
                     <Button asChild variant="outline" size="sm">
-                      <Link href="/sign-in" onClick={() => setMenuState(false)}>
+                      <Link
+                        href="/sign-in"
+                        onClick={() => setMenuState((prev) => !prev)}
+                      >
                         <span>Login</span>
                       </Link>
                     </Button>
